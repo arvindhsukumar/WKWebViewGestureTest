@@ -16,6 +16,7 @@
 		D4AB79DC2AFDD73800739462 /* WebViewGestureTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB79DB2AFDD73800739462 /* WebViewGestureTestTests.swift */; };
 		D4AB79E62AFDD73800739462 /* WebViewGestureTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB79E52AFDD73800739462 /* WebViewGestureTestUITests.swift */; };
 		D4AB79E82AFDD73800739462 /* WebViewGestureTestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AB79E72AFDD73800739462 /* WebViewGestureTestUITestsLaunchTests.swift */; };
+		D4AB79F62AFDD76900739462 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D4AB79F52AFDD76900739462 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4AB79F62AFDD76900739462 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +145,9 @@
 			dependencies = (
 			);
 			name = WebViewGestureTest;
+			packageProductDependencies = (
+				D4AB79F52AFDD76900739462 /* SnapKit */,
+			);
 			productName = WebViewGestureTest;
 			productReference = D4AB79C12AFDD73600739462 /* WebViewGestureTest.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +220,9 @@
 				Base,
 			);
 			mainGroup = D4AB79B82AFDD73600739462;
+			packageReferences = (
+				D4AB79F42AFDD76900739462 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = D4AB79C22AFDD73600739462 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -601,6 +609,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D4AB79F42AFDD76900739462 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D4AB79F52AFDD76900739462 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4AB79F42AFDD76900739462 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D4AB79B92AFDD73600739462 /* Project object */;
 }
