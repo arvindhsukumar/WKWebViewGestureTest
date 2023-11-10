@@ -16,10 +16,22 @@ class ViewController: UIViewController {
   var headerView: UIView!
   var headerViewTopConstraint: Constraint!
   
+  let scrollView: UIScrollView = {
+    let scrollView = UIScrollView(frame: .zero)
+    scrollView.isScrollEnabled = false
+    scrollView.contentInsetAdjustmentBehavior = .never
+    return scrollView
+  }()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     edgesForExtendedLayout = []
+    
+    view.addSubview(scrollView)
+    scrollView.snp.makeConstraints { make in
+      make.edges.equalTo(view)
+    }
     
     setupHeaderView()
     setupWebView()
@@ -28,7 +40,7 @@ class ViewController: UIViewController {
   
   func setupHeaderView() {
     headerView = UIView()
-    headerView.backgroundColor = .lightGray
+    headerView.backgroundColor = .red
     
     let label = UILabel()
     label.text = "Header"
@@ -37,10 +49,11 @@ class ViewController: UIViewController {
       make.center.equalTo(headerView)
     }
     
-    view.addSubview(headerView)
+    scrollView.addSubview(headerView)
     headerView.snp.makeConstraints { make in
-      headerViewTopConstraint =  make.top.equalTo(view.safeAreaLayoutGuide.snp.top).constraint
+      headerViewTopConstraint =  make.top.equalTo(scrollView.snp.top).constraint
       make.left.right.equalTo(view)
+      make.width.equalTo(scrollView)
       make.height.equalTo(100)
     }
   }
@@ -49,14 +62,14 @@ class ViewController: UIViewController {
     webView = WKWebView()
     webView.scrollView.delegate = self
     
-    view.addSubview(webView)
+    scrollView.addSubview(webView)
     webView.snp.makeConstraints { make in
-      make.left.right.bottom.equalTo(view)
+      make.left.right.equalTo(view)
       make.top.equalTo(headerView.snp.bottom)
-//      make.top.equalTo(view)
+      make.height.equalTo(view)
     }
 
-    webView.load(URLRequest(url: URL(string:"https://www.apple.com")!))
+    webView.load(URLRequest(url: URL(string:"https://www.google.com")!))
   }
   
   func setupLabels() {
@@ -86,12 +99,7 @@ class ViewController: UIViewController {
 extension ViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     offsetLabel.text = "Offset: \(scrollView.contentOffset.y)"
-    headerViewTopConstraint.update(offset: min(-scrollView.contentOffset.y, 0))
-    view.setNeedsLayout()
-    
-    UIView.animate(withDuration: 0) {
-      self.view.layoutIfNeeded()
-    }
+    self.scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: false)
   }
   
   func scrollViewDidZoom(_ scrollView: UIScrollView) {
