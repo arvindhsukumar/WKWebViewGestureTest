@@ -56,7 +56,7 @@ class ViewController: UIViewController {
 //      make.top.equalTo(view)
     }
 
-    webView.load(URLRequest(url: URL(string:"https://www.apple.com")!))
+    webView.load(URLRequest(url: URL(string:"https://www.google.com")!))
   }
   
   func setupLabels() {
@@ -87,11 +87,6 @@ extension ViewController: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     offsetLabel.text = "Offset: \(scrollView.contentOffset.y)"
     headerViewTopConstraint.update(offset: min(-scrollView.contentOffset.y, 0))
-    view.setNeedsLayout()
-    
-    UIView.animate(withDuration: 0) {
-      self.view.layoutIfNeeded()
-    }
   }
   
   func scrollViewDidZoom(_ scrollView: UIScrollView) {
